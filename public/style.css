@@ -1,0 +1,445 @@
+/* =========================================
+   MODERN CAR DJ THEME (FINAL POLISH)
+   ========================================= */
+
+/* 1. Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    /* Убирает синий блик на телефоне */
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #050505;
+    /* Еще более глубокий черный */
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* 2. Container (Phone Screen) */
+.container {
+    width: 100%;
+    max-width: 440px;
+    /* Оптимальная ширина для мобилок */
+
+    /* Тонкий градиент для объема */
+    background: linear-gradient(145deg, #1a1a1a 0%, #000000 100%);
+
+    padding: 24px 20px;
+    position: relative;
+    min-height: 100vh;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+}
+
+/* 3. Header & Logo */
+header {
+    text-align: center;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 10;
+}
+
+header h1 {
+    font-weight: 800;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    /* Неоновый градиент текста */
+    background: linear-gradient(90deg, #00ff88, #00ccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    margin-bottom: 5px;
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+header p {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+#users-online {
+    font-size: 11px;
+    font-weight: 700;
+    color: #00ff88;
+    background: rgba(0, 255, 136, 0.05);
+    /* Очень легкая плашка */
+    border: 1px solid rgba(0, 255, 136, 0.1);
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+/* 4. Host Section */
+#host-section {
+    margin-top: 15px;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#become-host-btn {
+    background: transparent;
+    border: 1px solid rgba(0, 255, 136, 0.5);
+    color: #00ff88;
+    font-size: 11px;
+    padding: 12px 24px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+}
+
+#become-host-btn:active {
+    transform: scale(0.95);
+    background: rgba(0, 255, 136, 0.1);
+}
+
+#host-taken-msg {
+    font-size: 12px;
+    color: #555;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+/* === HOST CONTROL PANEL (DIAMOND) === */
+#host-controls-panel {
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Тонкая рамка */
+    padding: 20px;
+    border-radius: 20px;
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.host-badge {
+    color: #00ff88;
+    font-size: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.playback-controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.playback-controls button {
+    flex: 1;
+    border: none;
+    background: #2a2a2a;
+    color: white;
+    padding: 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+}
+
+.playback-controls button:active {
+    transform: scale(0.96);
+}
+
+#ctrl-play {
+    background: #00ff88;
+    color: black;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+}
+
+#ctrl-pause {
+    background: #333;
+    color: #ccc;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0 10px;
+}
+
+.volume-control label {
+    font-size: 11px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+#vol-slider {
+    flex-grow: 1;
+    height: 4px;
+    background: #333;
+    border-radius: 2px;
+    appearance: none;
+    outline: none;
+}
+
+#vol-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 2px solid #000;
+}
+
+/* 5. Now Playing Card */
+.current-track {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 24px;
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Декоративный "эквалайзер" на фоне (статичный) */
+.current-track::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(0, 255, 136, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.current-track span {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.current-track h2 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #fff;
+}
+
+/* 6. Queue List */
+.queue-list {
+    flex-grow: 1;
+    /* Занимает оставшееся место */
+    padding-bottom: 100px;
+    /* Место под панель */
+}
+
+.queue-list h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #444;
+    margin-bottom: 15px;
+    margin-left: 5px;
+}
+
+.queue-list ul {
+    list-style: none;
+}
+
+.queue-list li {
+    background: #121212;
+    margin-bottom: 8px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Текущий трек в списке */
+.queue-list li:first-child {
+    background: linear-gradient(90deg, rgba(0, 255, 136, 0.05) 0%, transparent 100%);
+    border-left: 3px solid #00ff88;
+    border-top: 1px solid rgba(0, 255, 136, 0.1);
+    border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+}
+
+.queue-list li span {
+    font-size: 13px;
+    font-weight: 500;
+    color: #ddd;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%;
+}
+
+.delete-btn {
+    background: transparent;
+    color: #444;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.delete-btn:hover {
+    color: #ff5555;
+    background: rgba(255, 85, 85, 0.1);
+}
+
+/* 7. Bottom Controls Panel */
+.controls-panel {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 440px;
+
+    background: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(15px);
+    padding: 6px;
+    /* Поплотнее */
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    display: flex;
+    align-items: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    z-index: 100;
+}
+
+input {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    padding: 14px 24px;
+    /* Больше отступ слева */
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+input::placeholder {
+    color: #555;
+    font-size: 13px;
+}
+
+#add-btn {
+    background: #00ff88;
+    color: #000;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-weight: 800;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+    margin: 2px;
+    /* Чуть отступа внутри панели */
+}
+
+/* 8. Search Results */
+#search-results {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 440px;
+
+    background: #141414;
+    border-radius: 16px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    border: 1px solid #222;
+
+    display: none;
+    flex-direction: column;
+    z-index: 99;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.search-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid #222;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.search-item:last-child {
+    border-bottom: none;
+}
+
+.search-item img {
+    width: 50px;
+    height: 38px;
+    object-fit: cover;
+    border-radius: 4px;
+    opacity: 0.8;
+}
+
+.search-item-title {
+    font-size: 13px;
+    color: #eee;
+    font-weight: 500;
+}
+
+.search-item-author {
+    font-size: 11px;
+    color: #666;
+    margin-top: 2px;
+}
+
+#close-search {
+    background: #222;
+    color: #777;
+    padding: 12px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-top: 1px solid #333;
+}
+
+/* Hidden Utility */
+#player-container {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: -9999px;
+}

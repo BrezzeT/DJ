@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car DJ Party</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>🚗 DJ ROOM</h1>
+
+            <div id="host-section">
+                <!-- Кнопка "Стать хостом" (исчезает, если занято или если ты хост) -->
+                <button id="become-host-btn">🔊 СДЕЛАТЬ ЭТОТ ТЕЛЕФОН ХОСТОМ</button>
+
+                <!-- Статус "Хост за рулем" (видят гости) -->
+                <p id="host-taken-msg" style="display:none; color: #666; font-size: 12px; margin-top: 10px;">
+                    🎧 Хост уже подключен
+                </p>
+
+                <!-- ПАНЕЛЬ УПРАВЛЕНИЯ ХОСТА (Видит только Хост) -->
+                <div id="host-controls-panel" style="display:none;">
+                    <h3 class="host-badge">👑 ПУЛЬТ ДИДЖЕЯ</h3>
+
+                    <div class="playback-controls">
+                        <button id="ctrl-pause">⏸ ПАУЗА</button>
+                        <button id="ctrl-play">▶ ИГРАТЬ</button>
+                    </div>
+
+                    <div class="volume-control">
+                        <label>Громкость:</label>
+                        <input type="range" id="vol-slider" min="0" max="100" value="100">
+                    </div>
+                </div>
+            </div>
+
+            <p id="subtite-text">Ты управляешь музыкой</p>
+            <p id="users-online" style="color: #888; margin-top: 5px;">Онлайн: 0</p>
+        </header>
+
+        <main>
+            <div id="player-container" style="display:none;">
+                <div id="youtube-player"></div>
+            </div>
+
+            <div class="current-track">
+                <span>Сейчас играет:</span>
+                <h2 id="now-playing">Нет музыки</h2>
+            </div>
+
+            <div class="queue-list">
+                <h3>Очередь:</h3>
+                <ul id="track-list">
+                    <!-- Песни -->
+                </ul>
+            </div>
+        </main>
+
+        <!-- Всплывающий список результатов поиска -->
+        <div id="search-results">
+            <!-- Сюда JS добавит варианты -->
+        </div>
+
+        <div class="controls-panel">
+            <input type="text" id="song-input" placeholder="Введите название или ссылку...">
+            <button id="add-btn">НАЙТИ</button>
+        </div>
+
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+
+</body>
+
+</html>
